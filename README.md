@@ -4,7 +4,7 @@ Learning repository to explore the API of [Project Reactor][reactor].
 
 Contains a constantly growing collection of unit tests to showcase the API in terms of basic use cases as well of advanced uses cases.   
 
-If you miss a use case feel free to contribute or at least open an issue.
+If you miss a use case feel free to contribute or at least [open an issue][open_issue].
 
 #### Run tests
     $ ./gradlew test
@@ -28,3 +28,4 @@ If you miss a use case feel free to contribute or at least open an issue.
 [doc_mono]: https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html
 [doc_flux]: https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html
 [reactor]: https://projectreactor.io/
+[open_issue]: https://github.com/chrgue/learn-project-reactor/issues/new
