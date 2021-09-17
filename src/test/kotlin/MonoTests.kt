@@ -92,7 +92,4 @@ class MonoTests {
             .expectNext("SOMETHING")
             .verifyComplete()
     }
-    // https://www.youtube.com/watch?v=kwuu1efzkf4
-    // https://rxmarbles.com/
-
 }
