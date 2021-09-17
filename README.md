@@ -1,4 +1,4 @@
-# <img src="https://avatars.githubusercontent.com/u/4201559?s=200&v=4"  width = "100px" alt="yt" align="center"> Learn - Project Reactor
+# <img src="https://avatars.githubusercontent.com/u/4201559?s=200&v=4"  width = "100px" alt="yt" align="center"> Learn - Project Reactor ![test badge](https://github.com/chrgue/learn-project-reactor/actions/workflows/gradle.yml/badge.svg)
 
 Learning repository to explore the API of [Project Reactor][reactor].
 
