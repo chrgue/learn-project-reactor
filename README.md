@@ -1,6 +1,5 @@
 # <img src="https://avatars.githubusercontent.com/u/4201559?s=200&v=4"  width = "100px" alt="yt" align="center"> Learn - Project Reactor
 
----
 Learning repository to explore the API of [Project Reactor][reactor].
 
 Contains a constantly growing collection of unit tests to showcase the API in terms of basic use cases as well of advanced uses cases.   
