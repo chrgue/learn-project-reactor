@@ -23,7 +23,7 @@ class FluxFlatMapTests {
         Flux.just("demo", "cat")
             /*
                 using a simple flatMap will randomly fail because element #1 can overtake #2
-                a flatMapSequential will maintain the imput order
+                a flatMapSequential will maintain the input order
             */
             .flatMapSequential { Mono.just("this is a $it").delayRandom() }
             .stepVerify()
