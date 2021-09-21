@@ -11,10 +11,10 @@ If you miss a use case feel free to contribute or at least [open an issue][open_
 
 #### Resources
 
-* [<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="26px" alt="yt" align="center"> The Value Of Reactive Systems][yt_value_of_reactive]
 * [<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="26px" alt="yt" align="center"> Reactor in Action: Basic Talk][yt_reactor_in_action]
 * [<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="26px" alt="yt" align="center"> Do’s and Don’ts: Avoiding First-Time Reactive Programmer Mines][yt_do_and_donts_in_reactor]
 * [<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="26px" alt="yt" align="center"> Benefits of reactive programming with Reactor and Spring Boot 2 by Violeta Georgieva][yt_do_and_donts_in_reactor]
+* [<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="26px" alt="yt" align="center"> The Value Of Reactive Systems][yt_value_of_reactive]
 * [<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="26px" alt="yt" align="center"> Spring Tips: The Reactor Context][yt_reactor_context]
 * [<img src="https://raw.githubusercontent.com/ionic-team/ionicons/master/src/svg/link-outline.svg" width="26px" alt="yt" align="center"> Java doc - Mono][doc_mono]
 * [<img src="https://raw.githubusercontent.com/ionic-team/ionicons/master/src/svg/link-outline.svg" width="26px" alt="yt" align="center"> Java doc - Flux][doc_flux]
