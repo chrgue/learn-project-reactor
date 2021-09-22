@@ -4,7 +4,7 @@ Learning repository to explore the API of [Project Reactor][reactor].
 
 Contains a constantly growing collection of unit tests to showcase the API in terms of basic use cases as well of advanced uses cases.   
 
-If you miss a use case feel free to contribute or at least [open an issue][open_issue].
+If you miss a use case feel free to contribute or [open an issue][open_issue].
 
 #### Run tests
     $ ./gradlew test
