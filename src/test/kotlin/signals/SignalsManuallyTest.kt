@@ -1,18 +1,17 @@
+package signals
+
+import TestUtils.Companion.PAYLOAD
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-class BasicSignalsTest {
+class SignalsManuallyTest {
 
     private val onNext: (String) -> Unit = mockk(relaxed = true)
     private val onError: (Throwable) -> Unit = mockk(relaxed = true)
     private val onComplete: () -> Unit = mockk(relaxed = true)
-
-    companion object {
-        private const val PAYLOAD = "payload"
-    }
 
     @Test
     fun `mono executes onNext & onComplete once`() {
