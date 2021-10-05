@@ -31,7 +31,7 @@ class MultipleSubscriptionTest {
                 .verifyComplete()
 
         verify(exactly = 1) { getSearchResponse() }
-        verify(exactly = 2) { mapper(any()) }
+        verify(exactly = 2) { mapper(any()) } // -> mapper was called 2 times. Indicates request was done 2 times as well
     }
 
     @Test
@@ -46,7 +46,7 @@ class MultipleSubscriptionTest {
                 .stepVerify()
                 .expectNext(PAYLOAD)
                 .expectNext(PAYLOAD)
-                .then { searchResponsePublisher.assertSubscriptionCount(2) }
+                .then { searchResponsePublisher.assertSubscriptionCount(2) } // -> 2 subscriptions to the publisher -> 2 requests to the webservice, database etc.
                 .verifyComplete()
 
         verify(exactly = 1) { getSearchResponse() }
@@ -63,7 +63,7 @@ class MultipleSubscriptionTest {
         Mono.zip(response, response, response, response, response, response)
                 .stepVerify()
                 .expectNextCount(1)
-                .then { searchResponsePublisher.assertSubscriptionCount(6) }
+                .then { searchResponsePublisher.assertSubscriptionCount(6) } // -> 6 subscriptions to the publisher -> 6 requests to the webservice, database etc.
                 .verifyComplete()
 
         verify(exactly = 1) { getSearchResponse() }
@@ -79,7 +79,7 @@ class MultipleSubscriptionTest {
         Mono.zip(response, response, response, response, response, response)
                 .stepVerify()
                 .expectNextCount(1)
-                .then { searchResponsePublisher.assertSubscriptionCount(1) }
+                .then { searchResponsePublisher.assertSubscriptionCount(1) } // -> 1 subscriptions to the publisher
                 .verifyComplete()
 
         verify(exactly = 1) { getSearchResponse() }
