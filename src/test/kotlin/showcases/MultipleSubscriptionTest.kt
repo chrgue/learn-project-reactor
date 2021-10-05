@@ -85,6 +85,6 @@ class MultipleSubscriptionTest {
         verify(exactly = 1) { getSearchResponse() }
     }
 
-    private fun <T> TestPublisher<T>.assertSubscriptionCount(a: Long) =
-        assertThat(subscribeCount()).isEqualTo(a)
+    private fun <T> TestPublisher<T>.assertSubscriptionCount(count: Long) =
+        assertThat(subscribeCount()).isEqualTo(count)
 }
