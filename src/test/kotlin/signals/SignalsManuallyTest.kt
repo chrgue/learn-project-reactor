@@ -1,95 +1,99 @@
 package signals
 
 import TestUtils.Companion.PAYLOAD
-import io.mockk.mockk
-import io.mockk.verify
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 class SignalsManuallyTest {
 
-    private val onNext: (String) -> Unit = mockk(relaxed = true)
-    private val onError: (Throwable) -> Unit = mockk(relaxed = true)
-    private val onComplete: () -> Unit = mockk(relaxed = true)
-
     @Test
     fun `mono executes onNext & onComplete once`() {
+        val signals = mutableListOf<String>()
+        val countDown = CountDownLatch(1)
 
         Mono.just(PAYLOAD)
-                .subscribe(
-                    { onNext(it) },
-                    { onError(it) },
-                    { onComplete() }
-                )
+            .subscribe(
+                { signals.add("onNext") },
+                { signals.add("onError") },
+                {
+                    signals.add("onComplete")
+                    countDown.countDown()
+                }
+            )
 
-        block()
-
-        verify(exactly = 1) { onNext(PAYLOAD) }
-        verify(exactly = 0) { onError(any()) }
-        verify(exactly = 1) { onComplete() }
+        await(countDown)
+        assertThat(signals).containsExactly("onNext", "onComplete")
     }
 
     @Test
     fun `flux executes onNext for every item & onComplete once`() {
+        val signals = mutableListOf<String>()
+        val countDown = CountDownLatch(1)
+
         val items = listOf(PAYLOAD, PAYLOAD, PAYLOAD)
 
         Flux.fromIterable(items)
-                .subscribe(
-                    { onNext(it) },
-                    { onError(it) },
-                    { onComplete() }
-                )
+            .subscribe(
+                { signals.add("onNext") },
+                { signals.add("onError") },
+                {
+                    signals.add("onComplete")
+                    countDown.countDown()
+                }
+            )
 
-        block()
-
-        verify(exactly = items.size) { onNext(PAYLOAD) }
-        verify(exactly = 0) { onError(any()) }
-        verify(exactly = 1) { onComplete() }
+        await(countDown)
+        assertThat(signals).containsExactly("onNext", "onNext", "onNext", "onComplete")
     }
-
 
     @Test
     fun `mono with error executes onError only`() {
+        val signals = mutableListOf<String>()
+        val countDown = CountDownLatch(1)
 
         val exception = IllegalArgumentException()
 
         Mono.error<String>(exception)
-                .subscribe(
-                    { onNext(it) },
-                    { onError(it) },
-                    { onComplete() }
-                )
+            .subscribe(
+                { signals.add("onNext") },
+                {
+                    signals.add("onError")
+                    countDown.countDown()
+                },
+                { signals.add("onComplete") }
+            )
 
-        block()
-
-        verify(exactly = 0) { onNext(any()) }
-        verify(exactly = 1) { onError(exception) }
-        verify(exactly = 0) { onComplete() }
+        await(countDown)
+        assertThat(signals).containsExactly("onError")
     }
 
     @Test
     fun `flux with error executes onError only`() {
 
+        val signals = mutableListOf<String>()
+        val countDown = CountDownLatch(1)
+
         val exception = IllegalArgumentException()
 
         Flux.error<String>(exception)
-                .subscribe(
-                    { onNext(it) },
-                    { onError(it) },
-                    { onComplete() }
-                )
+            .subscribe(
+                { signals.add("onNext") },
+                {
+                    signals.add("onError")
+                    countDown.countDown()
+                },
+                { signals.add("onComplete") }
+            )
 
-
-        block()
-
-        verify(exactly = 0) { onNext(any()) }
-        verify(exactly = 1) { onError(exception) }
-        verify(exactly = 0) { onComplete() }
+        await(countDown)
+        assertThat(signals).containsExactly("onError")
     }
 
-    private fun block() {
-        // Don't do that in your code. This is just for demonstration.
-        Thread.sleep(500)
+    private fun await(countDown: CountDownLatch) {
+        assertThat(countDown.await(10, TimeUnit.MILLISECONDS)).isTrue
     }
 }
