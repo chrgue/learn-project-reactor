@@ -4,29 +4,34 @@ import TestUtils.Companion.PAYLOAD
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
-import reactor.kotlin.core.publisher.toMono
+import reactor.test.publisher.TestPublisher
 
 class AssemblyTimeVsExecutionTimeTest {
 
-    private val mapper: (String) -> Unit = mockk(relaxed = true)
+    private val mapper: (String) -> String = mockk(relaxed = true)
+    private val dbPublisher = TestPublisher.createCold<String>()
+
 
     @Test
-    fun `no operator will be executed until you subscribe`() {
-        getPipeline()
+    fun `has either a subscription nor executes operators if 'subscribe' was not called`() {
+        getTransformedSearchResult()
 
         verify(exactly = 0) { mapper(any()) }
+        dbPublisher.assertWasNotSubscribed()
     }
 
     @Test
-    fun `operators will be executed if you subscribe`() {
-        getPipeline()
-                .subscribe()
+    fun `has a subscription and executes operators when if 'subscribe' was called`() {
+        getTransformedSearchResult()
+            .subscribe()
 
         verify(exactly = 1) { mapper(any()) }
+        dbPublisher.assertWasSubscribed()
     }
 
-    private fun getPipeline() =
-        PAYLOAD
-                .toMono()
-                .map { mapper(it) }
+    private fun getTransformedSearchResult() =
+        dbPublisher
+            .also { it.emit(PAYLOAD) }
+            .mono()
+            .map { mapper(it) }
 }
