@@ -14,7 +14,7 @@ repositories {
 dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.5.30'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     implementation 'io.projectreactor:reactor-core:3.4.10'
     implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.4'
