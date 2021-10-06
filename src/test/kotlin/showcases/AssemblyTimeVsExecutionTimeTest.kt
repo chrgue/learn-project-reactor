@@ -11,7 +11,7 @@ class AssemblyTimeVsExecutionTimeTest {
     private val mapper: (String) -> Unit = mockk(relaxed = true)
 
     @Test
-    fun `no operator will be executed happen until you subscribe`() {
+    fun `no operator will be executed until you subscribe`() {
         getPipeline()
 
         verify(exactly = 0) { mapper(any()) }
