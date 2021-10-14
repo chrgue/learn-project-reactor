@@ -17,7 +17,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     implementation 'io.projectreactor:reactor-core:3.4.11'
-    implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.4'
+    implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.5'
 
     testImplementation 'io.projectreactor:reactor-test:3.4.11'
     testImplementation 'org.assertj:assertj-core:3.21.0'
