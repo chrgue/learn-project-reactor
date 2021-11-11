@@ -6,10 +6,8 @@ import org.junit.jupiter.api.Test
 import reactor.core.Scannable
 import reactor.kotlin.core.publisher.toMono
 
+// Based on: https://stackoverflow.com/q/68587400/9978524
 class CacheTest {
-    /*
-        Based on: https://stackoverflow.com/q/68587400/9978524
-     */
 
     @Test
     fun `test if mono is cached`() {

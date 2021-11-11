@@ -12,45 +12,47 @@ class FluxCreationTest {
 
     @Test
     fun `flux by 'just'`() {
-        Flux.just(PAYLOAD)
-                .stepVerify()
-                .expectNext(PAYLOAD)
-                .verifyComplete()
+        Flux.just(PAYLOAD, PAYLOAD, PAYLOAD)
+            .stepVerify()
+            .expectNext(PAYLOAD)
+            .expectNext(PAYLOAD)
+            .expectNext(PAYLOAD)
+            .verifyComplete()
     }
 
     @Test
     fun `flux by 'fromIterable'`() {
         Flux.fromIterable(listOf(HELLO, WORLD))
-                .stepVerify()
-                .expectNext(HELLO)
-                .expectNext(WORLD)
-                .verifyComplete()
+            .stepVerify()
+            .expectNext(HELLO)
+            .expectNext(WORLD)
+            .verifyComplete()
     }
 
     @Test
     fun `flux by extension`() {
         listOf(HELLO, WORLD)
-                .toFlux()
-                .stepVerify()
-                .expectNext(HELLO)
-                .expectNext(WORLD)
-                .verifyComplete()
+            .toFlux()
+            .stepVerify()
+            .expectNext(HELLO)
+            .expectNext(WORLD)
+            .verifyComplete()
     }
 
     @Test
     fun `flux by 'range'`() {
         Flux.range(0, 10)
-                .stepVerify()
-                .expectNextCount(10)
-                .verifyComplete()
+            .stepVerify()
+            .expectNextCount(10)
+            .verifyComplete()
     }
 
     @Test
     fun `flux by 'empty'`() {
         Flux.empty<String>()
-                .stepVerify()
-                .expectNextCount(0)
-                .verifyComplete()
+            .stepVerify()
+            .expectNextCount(0)
+            .verifyComplete()
     }
 
     @Test
@@ -58,8 +60,8 @@ class FluxCreationTest {
         val exception = IllegalArgumentException()
 
         Flux.error<String>(exception)
-                .stepVerify()
-                .expectNextCount(0)
-                .verifyError(exception::class.java)
+            .stepVerify()
+            .expectNextCount(0)
+            .verifyError(exception::class.java)
     }
 }
