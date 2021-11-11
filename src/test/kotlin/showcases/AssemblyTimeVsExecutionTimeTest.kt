@@ -10,8 +10,7 @@ class AssemblyTimeVsExecutionTimeTest {
 
     private val mapper: (String) -> String = mockk(relaxed = true)
     private val dbPublisher = TestPublisher.createCold<String>()
-
-
+    
     @Test
     fun `has either a subscription nor executes operators if 'subscribe' was not called`() {
         getTransformedSearchResult()
