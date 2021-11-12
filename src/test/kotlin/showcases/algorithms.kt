@@ -39,7 +39,7 @@ object WithNull : Implementation {
  *
  * + no additional wrapper object
  *
- * - can collide this your domain (What if -1 is means to cut the hair?)
+ * - can collide with your domain (What if -1 is means to cut the hair?)
  * - compiler does not force handling empty case (You need to remember to transform -1 to null.)
  */
 object WithDefault : Implementation {
