@@ -28,7 +28,7 @@ class RetainOrderTest {
 
     private fun getOrderedProductsFromSearchImplementation() =
         Flux.just(1L, 2L, 3L, 4L)
-            .flatMap { getProductFromDB(it) }
+            .flatMapSequential { getProductFromDB(it) }
 
     private fun mockProducts() =
         every { getProductFromDB(any()) } answers { firstArg<Long>().toString().toMono().delayRandom() }
