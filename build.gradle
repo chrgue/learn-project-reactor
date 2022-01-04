@@ -21,7 +21,7 @@ dependencies {
 
     testImplementation 'io.projectreactor:reactor-test:3.4.11'
     testImplementation 'org.assertj:assertj-core:3.21.0'
-    testImplementation "io.mockk:mockk:1.12.0"
+    testImplementation "io.mockk:mockk:1.12.2"
 }
 
 test {
